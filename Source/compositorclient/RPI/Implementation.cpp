@@ -486,6 +486,10 @@ private:
         {
             return (_remoteAccess->Height());
         }
+        virtual void* NativeSurface() const override
+        {
+	    return (_nativeSurface);
+	}
         inline void Keyboard(Compositor::IDisplay::IKeyboard* keyboard) override
         {
             assert((_keyboard == nullptr) ^ (keyboard == nullptr));
@@ -896,6 +900,12 @@ int Display::Process(const uint32_t data)
 int Display::FileDescriptor() const
 {
     return (g_pipefd[0]);
+}
+
+Compositor::IDisplay::ISurface* Display::SurfaceByName(const std::string& name)
+{
+    //TODO not implemented
+    return nullptr;
 }
 
 Compositor::IDisplay::ISurface* Display::Create(
